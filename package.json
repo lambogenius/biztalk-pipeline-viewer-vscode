@@ -4,7 +4,7 @@
   "description": "Visualize BizTalk .btp pipeline stages, components, and properties in VS Code.",
   "version": "0.1.0",
   "publisher": "replace-publisher",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -38,8 +38,11 @@
     }
   },
   "scripts": {
-    "check": "node --check extension.js && node --check media/main.js",
-    "package": "npm run check && vsce package"
+    "check": "node --check extension.js && node --check media/main.js && node --check test/extension.test.js",
+    "test": "node --test",
+    "package": "npm run check && vsce package",
+    "build-package": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/build-package.ps1",
+    "reinstall": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/reinstall.ps1"
   },
   "devDependencies": {
     "@vscode/vsce": "^3.6.2"
