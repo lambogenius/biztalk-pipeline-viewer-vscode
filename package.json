@@ -1,0 +1,47 @@
+{
+  "name": "biztalk-pipeline-viewer",
+  "displayName": "BizTalk Pipeline Viewer",
+  "description": "Visualize BizTalk .btp pipeline stages, components, and properties in VS Code.",
+  "version": "0.1.0",
+  "publisher": "replace-publisher",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Visualization", "Other"],
+  "keywords": ["biztalk", "pipeline", "btp"],
+  "activationEvents": ["onCustomEditor:biztalkPipeline.viewer"],
+  "main": "./extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "biztalkPipeline.viewer",
+        "displayName": "BizTalk Pipeline Viewer",
+        "selector": [{ "filenamePattern": "*.btp" }],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "biztalkPipeline.openViewer",
+        "title": "Open with BizTalk Pipeline Viewer"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "biztalkPipeline.openViewer",
+          "when": "resourceExtname == .btp",
+          "group": "navigation@10"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "check": "node --check extension.js && node --check media/main.js",
+    "package": "npm run check && vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.6.2"
+  }
+}
